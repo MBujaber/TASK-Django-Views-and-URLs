@@ -6,9 +6,11 @@ from .models import Product
 
 
 def get_home(request):
-    return HttpResponse("HELLO")
+    return HttpResponse("<h1>HELLO<h1>")
 
 
-def get_product(request):
-    product = Product.objects.get(id=1)
-    return HttpResponse(f" your order is {product}")
+def get_product(request, product_number):
+    product = Product.objects.get(id=product_number)
+    return HttpResponse(f'''Your Product Id: {product.id}
+                        \n Name: {product.name}
+                        \n Price {product.price}''')
