@@ -29,8 +29,9 @@ def get_product(request, product_number):
         context = {"product": {"name": product.name,
                                "price": product.price, "description": product.description}}
     except Product.DoesNotExist:
-        raise Http404("Product does not exist")
-    return render(request, "product_detail.html", {'product': product})
+        # raise Http404("Product does not exist")
+        raise Http404("Productt does not exist")
+    return render(request, "product-detail.html", context)
 
 
 def get_products(request):
@@ -41,4 +42,4 @@ def get_products(request):
             "name": product.name,
             "price": product.price})
     context = {"products": new_products}
-    return render(request, "product_list.html", context)
+    return render(request, "product-list.html", context)
