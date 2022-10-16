@@ -1,7 +1,7 @@
 from multiprocessing import context
 from operator import contains
 from urllib import request
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from .models import Product
 
@@ -22,6 +22,10 @@ def get_home(request):
     return render(request, "home.html")
 
 
+def get_error(request):
+    return render(request, "error.html")
+
+
 def get_product(request, product_number):
     try:
 
@@ -30,7 +34,7 @@ def get_product(request, product_number):
                                "price": product.price, "description": product.description}}
     except Product.DoesNotExist:
         # raise Http404("Product does not exist")
-        raise Http404("Productt does not exist")
+        return redirect("error_page")
     return render(request, "product-detail.html", context)
 
 
