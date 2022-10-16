@@ -39,6 +39,7 @@ def get_products(request):
     new_products = []
     for product in products:
         new_products.append({
+            "id": product.id,
             "name": product.name,
             "price": product.price})
     context = {"products": new_products}

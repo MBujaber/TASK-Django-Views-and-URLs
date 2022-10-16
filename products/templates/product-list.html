@@ -58,11 +58,15 @@
 </div>
 </nav>
   <body>
-    <div>
+    <div class="p-3 mb-2 bg-warning text-dark">
       <h1>All Products:</h1>
       {% for product in products %}
       <div>
-        <h2>{{product.name}} - price: {{product.price}}</h2>
+        <a href="{% url "product_detail" product_number=product.id %}">
+        <h2>
+          {{product.id}}: {{product.name}} - price: {{product.price}}
+        </h2>
+        </a>
       </div>
       {% endfor %}
     </div>
